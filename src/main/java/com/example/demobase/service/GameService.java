@@ -54,7 +54,6 @@ public class GameService {
         // Verificar si ya existe una partida en curso para este jugador y palabra
         Optional<GameInProgress> existingGame = gameInProgressRepository.findByJugadorAndPalabra(player.getId(), word.getId());
         if (existingGame.isPresent()) {
-            // Si ya existe una partida en curso, retornarla sin crear una nueva
             return buildResponseFromGameInProgress(existingGame.get());
         }
         // Marcar la palabra como utilizada
@@ -95,7 +94,6 @@ public class GameService {
         Set<Character> letrasIntentadas = stringToCharSet(gameInProgress.getLetrasIntentadas());
         // Verificar si la letra ya fue intentada
         if (letrasIntentadas.contains(letra)) {
-            // Si la letra ya fue intentada, retornar el estado actual sin modificar nada
             return buildResponseFromGameInProgress(gameInProgress);
         }
         // Agregar la nueva letra
