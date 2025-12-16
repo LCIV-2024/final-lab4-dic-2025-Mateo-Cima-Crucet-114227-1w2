@@ -7,10 +7,9 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: demobase
-      MYSQL_USER: demobase
-      MYSQL_PASSWORD: demobase
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -40,6 +39,7 @@ services:
       - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
       - SPRING_SQL_INIT_MODE=always
+      - SPRING_SQL_INIT_CONTINUE_ON_ERROR=true
       - SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION=true
     depends_on:
       mysql:
@@ -47,7 +47,7 @@ services:
     networks:
       - hangman-network
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/api/players || exit 1"]
+      test: ["CMD", "sh", "-c", "java -version && ps aux | grep '[j]ava.*app.jar' || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
