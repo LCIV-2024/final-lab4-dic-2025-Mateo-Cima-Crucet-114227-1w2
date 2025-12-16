@@ -6,6 +6,7 @@ import com.example.demobase.model.Player;
 import com.example.demobase.repository.GameRepository;
 import com.example.demobase.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +15,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ScoreboardService {
-    
-    private final PlayerRepository playerRepository;
-    private final GameRepository gameRepository;
+    @Autowired
+    private PlayerRepository playerRepository;
+    @Autowired
+    private GameRepository gameRepository;
     
     public List<ScoreboardDTO> getScoreboard() {
         return playerRepository.findAll().stream()

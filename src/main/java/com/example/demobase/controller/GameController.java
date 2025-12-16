@@ -6,6 +6,7 @@ import com.example.demobase.service.GameService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Tag(name = "Partidas", description = "API para gestión de partidas del juego Hangman")
 public class GameController {
-    
-    private final GameService gameService;
+    @Autowired
+    private GameService gameService;
     
     @PostMapping("/start/{playerId}")
     @Operation(summary = "Iniciar nueva partida")

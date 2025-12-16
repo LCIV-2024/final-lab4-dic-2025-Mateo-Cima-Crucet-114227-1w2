@@ -2,14 +2,11 @@ package com.example.demobase.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "words")
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Word {
     
     @Id
@@ -21,5 +18,35 @@ public class Word {
     
     @Column(nullable = false)
     private Boolean utilizada = false;
+
+    public Word(Long id,String palabra, Boolean utilizada) {
+        this.id = id;
+        this.palabra = palabra;
+        this.utilizada = utilizada;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public String getPalabra() {
+        return palabra;
+    }
+    
+    public void setPalabra(String palabra) {
+        this.palabra = palabra;
+    }
+    
+    public Boolean getUtilizada() {
+        return utilizada;
+    }
+    
+    public void setUtilizada(Boolean utilizada) {
+        this.utilizada = utilizada;
+    }
 }
 

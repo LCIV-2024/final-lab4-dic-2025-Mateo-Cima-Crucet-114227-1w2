@@ -5,6 +5,7 @@ import com.example.demobase.service.ScoreboardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Tag(name = "Puntajes", description = "API para consultar puntajes y estadísticas")
 public class ScoreboardController {
-    
-    private final ScoreboardService scoreboardService;
+    @Autowired
+    private ScoreboardService scoreboardService;
     
     @GetMapping
     @Operation(summary = "Obtener grilla de puntajes de todos los jugadores")

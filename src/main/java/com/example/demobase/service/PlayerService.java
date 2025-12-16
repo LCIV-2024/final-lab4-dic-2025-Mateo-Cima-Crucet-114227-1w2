@@ -4,6 +4,7 @@ import com.example.demobase.dto.PlayerDTO;
 import com.example.demobase.model.Player;
 import com.example.demobase.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +15,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PlayerService {
-    
-    private final PlayerRepository playerRepository;
+    @Autowired
+    private PlayerRepository playerRepository;
     
     public List<PlayerDTO> getAllPlayers() {
         return playerRepository.findAll().stream()
